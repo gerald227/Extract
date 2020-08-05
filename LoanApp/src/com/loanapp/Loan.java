@@ -11,6 +11,7 @@ public class Loan {
 	}
 
 	public void setUsername(String username) {
+		//some comment
 		this.username = username;
 	}
 
