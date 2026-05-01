@@ -1,0 +1,143 @@
+{
+  "info": {
+    "_postman_id": "9825d81a-762e-44f8-9617-28ea71cd2598",
+    "name": "Test2 Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54093417",
+    "_collection_link": "https://go.postman.co/collection/54093417-9825d81a-762e-44f8-9617-28ea71cd2598?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get products2",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var resp = pm.response.json(); // Get the name of the first category from the response\r",
+              "const id  = resp.data[1]._id;\r",
+              "console.log(id);\r",
+              "pm.collectionVariables.set(\"Id\", id); // Set the id as a collection variable\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "    pm.response.to.be.success;\r",
+              "});\r",
+              "postman.setNextRequest(\"Get users2\")"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://fakestoreapiserver.reactbd.org/api/products",
+          "protocol": "https",
+          "host": [
+            "fakestoreapiserver",
+            "reactbd",
+            "org"
+          ],
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Single Product2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Valid Id Passes\", function () {\r",
+              "    const ID = pm.response.json()._id;\r",
+              "    console.log(ID);\r",
+              "    pm.expect(pm.response.json()._id).to.eql(2);\r",
+              "});\r",
+              "//ostman.setNextRequest(null);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "//const tstid = pm.getIterationData(\"Id\");\r",
+              "//pm.collectionVariables.set(\"Id\", tstid); // Set the id as a collection variable"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://fakestoreapiserver.reactbd.org/api/products/{{Id}}",
+          "protocol": "https",
+          "host": [
+            "fakestoreapiserver",
+            "reactbd",
+            "org"
+          ],
+          "path": [
+            "api",
+            "products",
+            "{{Id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get users2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://fakestoreapiserver.reactbd.org/api/users",
+          "protocol": "https",
+          "host": [
+            "fakestoreapiserver",
+            "reactbd",
+            "org"
+          ],
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "Id",
+      "value": ""
+    }
+  ]
+}
