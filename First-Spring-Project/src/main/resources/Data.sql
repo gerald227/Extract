@@ -1,0 +1,1 @@
+insert into Score (id, wins) values (1,10);

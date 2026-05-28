@@ -1,0 +1,1 @@
+Create table Score( id INTEGER auto_increment NOT NULL, wins INTEGER NOT NULL)
